@@ -129,6 +129,19 @@ header.site{
 .decision-benefits{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:.82rem;color:var(--ink-soft);}
 .decision-benefits span::before{content:"✓ ";color:var(--pink);font-weight:700;}
 
+/* ---------- Shop by category strip ---------- */
+.cat-strip{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
+.cat-strip::-webkit-scrollbar{height:6px;}
+.cat-strip::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+.cat-pill{
+  flex:0 0 auto;background:#fff;border:1px solid var(--border);
+  border-radius:16px;padding:18px 22px;text-align:center;min-width:110px;
+  font-size:.82rem;font-weight:700;cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.cat-pill:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--pink);}
+.cat-pill .ic{font-size:1.6rem;margin-bottom:8px;}
+
 /* ---------- Need cards ---------- */
 .need-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 @media (max-width:900px){.need-grid{grid-template-columns:repeat(2,1fr);}}
