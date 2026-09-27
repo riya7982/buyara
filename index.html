@@ -2,125 +2,718 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cuelinks Verification -->
   <meta name="cuelinks-verification" content="VERIFY-CL-S0CK2MLM">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BUYARA helps you choose useful products within your budget — researched, shortlisted and easier to compare.">
-  <meta name="theme-color" content="#ff2f86">
-  <title>BUYARA — Handpicked Finds. Made Easier to Choose.</title>
+  <meta name="description" content="BUYARA helps you choose affordable products without endless scrolling. Tell us your need and budget, and get a useful shortlist.">
+
+  <meta property="og:title" content="BUYARA — Handpicked finds. Made easier to choose.">
+  <meta property="og:description" content="Tell BUYARA what you need and your budget. We'll help narrow it down.">
+  <meta property="og:type" content="website">
+
+  <title>BUYARA — Handpicked finds. Made easier to choose.</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div class="announcement"><span>✦</span> DON'T KNOW WHAT TO BUY? Tell BUYARA your need + budget. <a href="#decision">Start here →</a></div>
 
-<header class="site-header">
-  <div class="nav-wrap">
-    <a href="#" class="logo">BUYARA<span>.</span></a>
-    <nav class="desktop-nav">
-      <a class="active" href="#decision">Start Here</a>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+  <!-- TOP STRIP -->
+  <div class="top-strip">
+    <span>✦ DON'T KNOW WHAT TO BUY?</span>
+    <strong>Tell BUYARA your need + budget.</strong>
+    <a href="#decision">Start here →</a>
+  </div>
+
+
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="nav-wrap">
+
+      <a href="#" class="logo">BUYARA<span>.</span></a>
+
+      <nav class="desktop-nav">
+        <a href="#decision">Start Here</a>
+        <a href="#solutions">Shop by Need</a>
+        <a href="#budget">Shop by Budget</a>
+        <a href="#popular">Popular Right Now</a>
+        <a href="#guides">Buying Guides</a>
+        <a href="#gifts">Gifts</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          ⌕
+        </button>
+
+        <button class="icon-btn saved-btn" id="savedToggle" aria-label="Saved">
+          ♡
+          <span id="savedCount">0</span>
+        </button>
+
+        <button class="menu-btn" id="menuToggle" aria-label="Menu">
+          ☰
+        </button>
+      </div>
+
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="search-row" id="searchRow">
+
+      <div class="search-box">
+        <span>⌕</span>
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Try: water bottle, study lamp, gift under 500..."
+        >
+
+        <button id="searchButton">
+          Search
+        </button>
+      </div>
+
+    </div>
+
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#decision">Start Here</a>
       <a href="#solutions">Shop by Need</a>
       <a href="#budget">Shop by Budget</a>
       <a href="#popular">Popular Right Now</a>
       <a href="#guides">Buying Guides</a>
       <a href="#gifts">Gifts</a>
     </nav>
-    <div class="nav-tools">
-      <button id="searchToggle" aria-label="Search">⌕</button>
-      <button id="savedToggle" aria-label="Saved products">♡<sup id="savedCount">0</sup></button>
-      <button class="mobile-menu" id="menuToggle" aria-label="Menu">☰</button>
-    </div>
-  </div>
-  <div class="search-row" id="searchRow">
-    <div class="search-input-wrap">
-      <span>⌕</span><input id="searchInput" type="search" placeholder="Try: water bottle, study lamp, gift under 500..."><button id="searchButton">Search</button>
-    </div>
-  </div>
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#decision">Start Here</a><a href="#solutions">Shop by Need</a><a href="#budget">Shop by Budget</a><a href="#popular">Popular Right Now</a><a href="#guides">Buying Guides</a><a href="#gifts">Gifts</a>
-  </div>
-</header>
 
-<main>
-<section class="hero-shell" id="decision">
-  <div class="hero-main">
-    <div class="hero-copy">
-      <span class="eyebrow">SHOPPING DECISION, MADE EASY</span>
-      <h1>Tell us what you need. <em>We'll narrow it down.</em></h1>
-      <p>Don't scroll through thousands of products. Give BUYARA your need and budget — we'll research the options and help you choose.</p>
-      <div class="decision-box">
-        <label for="needInput">What are you looking for?</label>
-        <div class="hero-search"><span>⌕</span><input id="needInput" type="search" placeholder="e.g. water bottle, gift for sister, study lamp..."><button id="needSearchBtn">Find Picks</button></div>
-        <div class="budget-choice"><span>Your budget:</span><button data-decision-budget="199">₹199</button><button data-decision-budget="299">₹299</button><button data-decision-budget="499">₹499</button><button data-decision-budget="799">₹799</button><button data-decision-budget="999">₹999</button></div>
+  </header>
+
+
+  <main>
+
+    <!-- HERO / DECISION -->
+    <section class="hero" id="decision">
+
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+
+          <div class="eyebrow">
+            SHOPPING DECISION, MADE EASY
+          </div>
+
+          <h1>
+            Tell us what you need.
+            <em>We'll narrow it down.</em>
+          </h1>
+
+          <p class="hero-text">
+            Don't scroll through thousands of products.
+            Give BUYARA your need and budget — we'll help you
+            find a small, useful shortlist.
+          </p>
+
+          <div class="decision-box">
+
+            <label for="needInput">
+              What are you looking for?
+            </label>
+
+            <div class="need-search">
+
+              <span>⌕</span>
+
+              <input
+                id="needInput"
+                type="text"
+                placeholder="e.g. water bottle, gift for sister, study lamp..."
+              >
+
+              <button id="needSearchBtn">
+                Find Picks
+              </button>
+
+            </div>
+
+            <div class="budget-line">
+
+              <span>Your budget:</span>
+
+              <button data-decision-budget="199">₹199</button>
+              <button data-decision-budget="299">₹299</button>
+              <button data-decision-budget="499">₹499</button>
+              <button data-decision-budget="799">₹799</button>
+              <button data-decision-budget="999">₹999</button>
+
+            </div>
+
+          </div>
+
+          <div class="hero-points">
+
+            <span>✓ Shortlisted, not overloaded</span>
+            <span>✓ Budget-first</span>
+            <span>✓ Clear reasons</span>
+            <span>✓ Compare before you buy</span>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <div class="visual-card">
+
+            <div class="visual-label">
+              CURATED SHOPPING CHOICES
+            </div>
+
+            <div class="visual-image">
+              <img
+                src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1000&q=85"
+                alt="Curated shopping products"
+              >
+            </div>
+
+            <div class="visual-caption">
+              <strong>Less scrolling.</strong>
+              <span>Better choosing. ♥</span>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
-      <div class="trust-points"><span>✓ Shortlisted, not overloaded</span><span>✓ Budget-first</span><span>✓ Clear reasons</span><span>✓ Compare before you buy</span></div>
+
+    </section>
+
+
+    <!-- SHOP BY NEED -->
+    <section class="section needs-section" id="solutions">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="eyebrow">START WITH YOUR PROBLEM</div>
+
+          <h2>
+            What are you trying to buy?
+          </h2>
+
+          <p>
+            Pick a need. BUYARA will turn a huge catalogue
+            into a small, useful shortlist.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="need-grid">
+
+        <button class="need-card" data-query="water bottle">
+
+          <div class="need-icon">💧</div>
+
+          <div>
+            <strong>I need a water bottle</strong>
+            <span>Daily use • college • office • gym</span>
+          </div>
+
+          <b>→</b>
+
+        </button>
+
+
+        <button class="need-card" data-query="study lamp">
+
+          <div class="need-icon">💡</div>
+
+          <div>
+            <strong>I need a study lamp</strong>
+            <span>Desk • study • work from home</span>
+          </div>
+
+          <b>→</b>
+
+        </button>
+
+
+        <button class="need-card" data-query="kitchen storage">
+
+          <div class="need-icon">🫙</div>
+
+          <div>
+            <strong>I need kitchen storage</strong>
+            <span>Containers • organisation • space saving</span>
+          </div>
+
+          <b>→</b>
+
+        </button>
+
+
+        <button class="need-card" data-query="budget audio">
+
+          <div class="need-icon">🎧</div>
+
+          <div>
+            <strong>I need budget audio</strong>
+            <span>Earbuds • calls • everyday listening</span>
+          </div>
+
+          <b>→</b>
+
+        </button>
+
+
+        <button class="need-card" data-query="women top">
+
+          <div class="need-icon">👚</div>
+
+          <div>
+            <strong>I need something to wear</strong>
+            <span>Everyday fashion • under your budget</span>
+          </div>
+
+          <b>→</b>
+
+        </button>
+
+
+        <button class="need-card" data-query="gift">
+
+          <div class="need-icon">🎁</div>
+
+          <div>
+            <strong>I need a gift</strong>
+            <span>For her • him • friends • family</span>
+          </div>
+
+          <b>→</b>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- BUDGET -->
+    <section class="section budget-section" id="budget">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="eyebrow">BUDGET FIRST</div>
+
+          <h2>
+            Tell us what you can spend.
+          </h2>
+
+          <p>
+            Because “best” means nothing if it doesn't fit your budget.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="budget-grid">
+
+        <button class="budget-card" data-decision-budget="199">
+          <strong>₹199</strong>
+          <span>or less</span>
+          <small>Useful little finds</small>
+        </button>
+
+        <button class="budget-card" data-decision-budget="299">
+          <strong>₹299</strong>
+          <span>or less</span>
+          <small>Everyday budget picks</small>
+        </button>
+
+        <button class="budget-card featured" data-decision-budget="499">
+          <div class="budget-tag">CORE VALUE</div>
+          <strong>₹499</strong>
+          <span>or less</span>
+          <small>Our main value zone</small>
+        </button>
+
+        <button class="budget-card" data-decision-budget="799">
+          <strong>₹799</strong>
+          <span>or less</span>
+          <small>Better upgrades</small>
+        </button>
+
+        <button class="budget-card" data-decision-budget="999">
+          <strong>₹999</strong>
+          <span>or less</span>
+          <small>More choice, still sensible</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- POPULAR -->
+    <section class="section popular-section" id="popular">
+
+      <div class="popular-heading">
+
+        <div>
+
+          <div class="eyebrow">
+            SHORTLISTED FOR YOU
+          </div>
+
+          <h2>
+            Popular Right Now
+          </h2>
+
+          <p>
+            Starting points we'll research and narrow down.
+          </p>
+
+        </div>
+
+        <a href="#guides">
+          See buying guides →
+        </a>
+
+      </div>
+
+
+      <div class="filter-row">
+
+        <button class="filter-btn active" data-filter="All">
+          All
+        </button>
+
+        <button class="filter-btn" data-filter="Gadgets">
+          Gadgets
+        </button>
+
+        <button class="filter-btn" data-filter="Home">
+          Home
+        </button>
+
+        <button class="filter-btn" data-filter="Fashion">
+          Fashion
+        </button>
+
+        <button class="filter-btn" data-filter="Beauty">
+          Beauty
+        </button>
+
+        <button class="filter-btn" data-filter="Gifts">
+          Gifts
+        </button>
+
+      </div>
+
+
+      <div class="product-grid" id="productGrid">
+
+        <div class="loading-state">
+          Loading BUYARA picks...
+        </div>
+
+      </div>
+
+
+      <p class="product-disclaimer">
+        Product prices, availability and merchant links will be verified
+        before launch. BUYARA does not claim personal use or experience
+        with products unless explicitly stated.
+      </p>
+
+    </section>
+
+
+    <!-- BUYING GUIDES -->
+    <section class="section guides-section" id="guides">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="eyebrow">
+            THE REAL BUYARA VALUE
+          </div>
+
+          <h2>
+            Buying Guides that answer
+            <em>“Which one should I get?”</em>
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="guide-grid">
+
+        <article class="guide-card">
+
+          <div class="guide-number">01</div>
+
+          <div class="guide-content">
+
+            <span>EXAMPLE GUIDE</span>
+
+            <h3>
+              Best Water Bottles Under ₹300
+            </h3>
+
+            <p>
+              Compare capacity, leak resistance, material,
+              portability and price — then choose the right
+              one for college, office or gym.
+            </p>
+
+            <a href="#popular">
+              Explore shortlist →
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="guide-card">
+
+          <div class="guide-number">02</div>
+
+          <div class="guide-content">
+
+            <span>EXAMPLE GUIDE</span>
+
+            <h3>
+              Best Study Lamps Under ₹200
+            </h3>
+
+            <p>
+              Rechargeable or USB? Brightness, modes,
+              desk space and value explained without
+              making you scroll through 100 listings.
+            </p>
+
+            <a href="#popular">
+              Explore shortlist →
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="guide-card">
+
+          <div class="guide-number">03</div>
+
+          <div class="guide-content">
+
+            <span>EXAMPLE GUIDE</span>
+
+            <h3>
+              Best Gifts Under ₹500
+            </h3>
+
+            <p>
+              Instead of showing everything, we narrow
+              gift ideas by person, occasion and budget.
+            </p>
+
+            <a href="#gifts">
+              Explore gift ideas →
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- GIFTS -->
+    <section class="gift-section" id="gifts">
+
+      <div class="gift-inner">
+
+        <div>
+
+          <div class="eyebrow">
+            GIFTING WITHOUT THE GUESSWORK
+          </div>
+
+          <h2>
+            Tell us who it's for. 🎁
+          </h2>
+
+          <p>
+            Then give us your budget. BUYARA will help
+            narrow down the choices.
+          </p>
+
+        </div>
+
+
+        <div class="gift-buttons">
+
+          <button data-query="gift for her">
+            For Her ↗
+          </button>
+
+          <button data-query="gift for him">
+            For Him ↗
+          </button>
+
+          <button data-query="gift for parents">
+            For Parents ↗
+          </button>
+
+          <button data-query="gift for friends">
+            For Friends ↗
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+
+      <div class="newsletter-inner">
+
+        <div>
+
+          <div class="eyebrow">
+            NO RANDOM DEAL SPAM
+          </div>
+
+          <h2>
+            Get useful finds,
+            <em>not endless links.</em>
+          </h2>
+
+          <p>
+            Curated shopping ideas and new guides
+            when they're actually useful.
+          </p>
+
+        </div>
+
+
+        <form id="newsletter">
+
+          <input
+            type="email"
+            placeholder="Your email address"
+            required
+          >
+
+          <button type="submit">
+            Subscribe →
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+
+        <a href="#" class="logo">
+          BUYARA<span>.</span>
+        </a>
+
+        <p>
+          Handpicked finds. Made easier to choose.
+        </p>
+
+        <small>
+          BUYARA may earn a commission when you purchase
+          through certain links. We only use affiliate links
+          where relevant.
+        </small>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <strong>BUYARA</strong>
+
+        <a href="#decision">Start Here</a>
+        <a href="#guides">Buying Guides</a>
+        <a href="#popular">Popular Right Now</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <strong>SHOP</strong>
+
+        <a href="#budget">By Budget</a>
+        <a href="#solutions">By Need</a>
+        <a href="#gifts">Gifts</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <strong>INFO</strong>
+
+        <a href="#">About</a>
+        <a href="#">Affiliate Disclosure</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+
+      </div>
+
     </div>
-    <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&q=88" alt="Curated shopping choices">
-      <div class="hero-tag">Less scrolling.<br><b>Better choosing.</b> ♥</div>
-      <div class="hero-flower flower-a">✦</div><div class="hero-flower flower-b">✿</div>
+
+
+    <div class="footer-bottom">
+      © 2026 BUYARA. All rights reserved.
     </div>
-  </div>
-</section>
 
-<section class="solutions-section" id="solutions">
-  <div class="section-heading"><div><span class="eyebrow">START WITH YOUR PROBLEM</span><h2>What are you trying to buy?</h2><p class="section-sub">Pick a need. BUYARA will turn a huge catalogue into a small, useful shortlist.</p></div></div>
-  <div class="solution-grid">
-    <a href="#popular" data-query="water bottle"><span>💧</span><b>I need a water bottle</b><small>Daily use • college • office • gym</small></a>
-    <a href="#popular" data-query="study lamp"><span>💡</span><b>I need a study lamp</b><small>Desk • study • work from home</small></a>
-    <a href="#popular" data-query="kitchen storage"><span>🫙</span><b>I need kitchen storage</b><small>Containers • organisation • space saving</small></a>
-    <a href="#popular" data-query="tws earbuds"><span>🎧</span><b>I need budget audio</b><small>Earbuds • calls • everyday listening</small></a>
-    <a href="#popular" data-query="women top"><span>👚</span><b>I need something to wear</b><small>Everyday fashion • under your budget</small></a>
-    <a href="#gifts"><span>🎁</span><b>I need a gift</b><small>For her • him • friends • family</small></a>
-  </div>
-</section>
+  </footer>
 
-<section class="budget-section" id="budget">
-  <div class="budget-intro"><span class="eyebrow">BUDGET FIRST</span><h2>Tell us what you can spend.</h2><p>Because “best” means nothing if it doesn't fit your budget.</p></div>
-  <div class="budget-grid-large">
-    <a href="#popular" data-budget="199"><strong>₹199</strong><span>or less</span><small>Useful little finds</small></a>
-    <a href="#popular" data-budget="299"><strong>₹299</strong><span>or less</span><small>Everyday budget picks</small></a>
-    <a href="#popular" data-budget="499"><strong>₹499</strong><span>or less</span><small>Our core value zone</small></a>
-    <a href="#popular" data-budget="799"><strong>₹799</strong><span>or less</span><small>Better upgrades</small></a>
-    <a href="#popular" data-budget="999"><strong>₹999</strong><span>or less</span><small>More choice, still sensible</small></a>
-  </div>
-</section>
 
-<section class="content-section" id="popular">
-  <div class="section-heading"><div><span class="eyebrow">SHORTLISTED FOR YOU</span><h2>Popular Right Now</h2><p class="section-sub">Not everything that's popular belongs in your cart. These are starting points we'll research and narrow down.</p></div><a href="#guides">See buying guides →</a></div>
-  <div class="filter-row" id="filters"><button class="active" data-filter="All">All</button><button data-filter="Gadgets">Gadgets</button><button data-filter="Home">Home</button><button data-filter="Fashion">Fashion</button><button data-filter="Beauty">Beauty</button><button data-filter="Gifts">Gifts</button></div>
-  <div class="product-grid" id="productGrid"></div>
-  <p class="preview-note">These are build-stage examples. Current product, price, availability and merchant links will be verified before launch.</p>
-</section>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
-<section class="decision-guide" id="guides">
-  <div class="section-heading"><div><span class="eyebrow">THE REAL BUYARA VALUE</span><h2>Buying Guides that answer “Which one should I get?”</h2></div></div>
-  <div class="guide-grid">
-    <article class="guide"><div class="guide-number">01</div><span>EXAMPLE GUIDE</span><h3>Best Water Bottles Under ₹300</h3><p>Compare capacity, leak resistance, material, portability and price — then choose the right one for college, office or gym.</p><a href="#">Coming after product research →</a></article>
-    <article class="guide"><div class="guide-number">02</div><span>EXAMPLE GUIDE</span><h3>Best Study Lamps Under ₹200</h3><p>Rechargeable or USB? Brightness, modes, desk space and value explained without making you scroll through 100 listings.</p><a href="#">Coming after product research →</a></article>
-    <article class="guide"><div class="guide-number">03</div><span>EXAMPLE GUIDE</span><h3>Best Gifts Under ₹500</h3><p>Instead of showing everything, we narrow gift ideas by person, occasion and budget.</p><a href="#">Coming after product research →</a></article>
-  </div>
-</section>
 
-<section class="gifts-section" id="gifts">
-  <div><span class="eyebrow">GIFTING WITHOUT THE GUESSWORK 🎁</span><h2>Tell us who it's for.</h2><p>Then give us your budget. BUYARA will help narrow down the choices.</p></div>
-  <div class="gift-grid"><a href="#popular" data-query="gift for her">For Her <b>↗</b></a><a href="#popular" data-query="gift for him">For Him <b>↗</b></a><a href="#popular" data-query="gift for parents">For Parents <b>↗</b></a><a href="#popular" data-query="gift for friend">For Friends <b>↗</b></a></div>
-</section>
+  <script src="./script.js"></script>
 
-<section class="newsletter-section"><div><span class="eyebrow">NO RANDOM DEAL SPAM</span><h2>Get useful finds, not endless links.</h2><p>Curated shopping ideas and new guides when they are actually useful.</p></div><form id="newsletter"><input type="email" placeholder="Your email address" required><button>Subscribe →</button></form></section>
-</main>
-
-<footer>
-  <div class="footer-brand"><a href="#" class="logo">BUYARA<span>.</span></a><p>Handpicked finds. Made easier to choose.</p><small>BUYARA may earn a commission when you purchase through certain links. We only use affiliate links where relevant.</small></div>
-  <div><b>BUYARA</b><a href="#decision">Start Here</a><a href="#guides">Buying Guides</a><a href="#popular">Popular Right Now</a></div>
-  <div><b>SHOP</b><a href="#budget">By Budget</a><a href="#solutions">By Need</a><a href="#gifts">Gifts</a></div>
-  <div><b>INFO</b><a href="#">About</a><a href="#">Affiliate Disclosure</a><a href="#">Privacy</a><a href="#">Contact</a></div>
-  <div class="copyright">© 2026 BUYARA. All rights reserved.</div>
-</footer>
-<div class="toast" id="toast"></div>
-<script src="script.js"></script>
 </body>
 </html>
