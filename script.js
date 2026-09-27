@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   wireDecisionForm();
   wireBudgetCards();
   wireFilterChips();
+  wireCategoryStrip();
   loadProducts();
 });
 
@@ -59,6 +60,21 @@ function wireBudgetCards(){
     card.addEventListener("click", () => {
       state.budget = parseInt(card.dataset.budget, 10);
       goToPopularSection("");
+    });
+  });
+}
+
+/* ---------- Shop by category strip ---------- */
+function wireCategoryStrip(){
+  document.querySelectorAll("#cat-strip .cat-pill").forEach(pill => {
+    pill.addEventListener("click", () => {
+      state.activeGroup = pill.dataset.group || "All";
+      document.querySelectorAll(".filter-chip").forEach(c => {
+        c.classList.toggle("active", c.dataset.group === state.activeGroup);
+      });
+      const section = document.getElementById("popular");
+      if(section) section.scrollIntoView({ behavior: "smooth" });
+      renderProducts({});
     });
   });
 }
