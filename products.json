@@ -1,8 +1,101 @@
 [
-  {"id":1,"name":"Budget TWS Earbuds","cat":"Gadgets","price":499,"badge":"RESEARCH PICK","img":"photo-1590658268037-6bf12165a8df","note":"A budget audio option to compare on price, battery and everyday use."},
-  {"id":2,"name":"Kitchen Storage Container Set","cat":"Home","price":499,"badge":"VALUE PICK","img":"photo-1602143407151-7111542de6e8","note":"A practical storage set to compare by size, material and quantity."},
-  {"id":3,"name":"1L Water Bottle","cat":"Home","price":399,"badge":"EVERYDAY PICK","img":"photo-1602143407151-7111542de6e8","note":"A daily-use bottle shortlist focused on capacity, portability and value."},
-  {"id":4,"name":"Women's Top","cat":"Fashion","price":399,"badge":"UNDER ₹400","img":"photo-1485968579580-b6d095142e6e","note":"An affordable everyday fashion option to compare by fit, fabric and style."},
-  {"id":5,"name":"Small Sling Bag","cat":"Fashion","price":499,"badge":"BUDGET PICK","img":"photo-1548036328-c9fa89d128fa","note":"A compact everyday carry option to compare by size, storage and value."},
-  {"id":6,"name":"Study / Desk Lamp","cat":"Home","price":199,"badge":"UNDER ₹200","img":"photo-1507473885765-e6ed057f782c","note":"A budget desk-light option to compare by brightness, modes and power type."}
+  {
+    "id": 1,
+    "name": "Budget TWS Earbuds",
+    "cat": "Gadgets",
+    "price": 399,
+    "badge": "UNDER ₹500",
+    "note": "A budget-friendly everyday audio option for calls, music and casual listening.",
+    "searchTerms": "tws earbuds wireless earbuds bluetooth earphones audio calls music under 500",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 2,
+    "name": "Kitchen Storage Container Set",
+    "cat": "Home",
+    "price": 449,
+    "badge": "VALUE PICK",
+    "note": "Useful everyday storage for keeping kitchen shelves organised without spending too much.",
+    "searchTerms": "kitchen storage containers boxes organisation jars set under 500",
+    "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 3,
+    "name": "1L Water Bottle",
+    "cat": "Home",
+    "price": 349,
+    "badge": "UNDER ₹500",
+    "note": "A practical everyday bottle for college, office, gym and travel.",
+    "searchTerms": "water bottle 1 litre bottle college office gym travel under 500",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 4,
+    "name": "Women's Everyday Top",
+    "cat": "Fashion",
+    "price": 399,
+    "badge": "BUDGET FASHION",
+    "note": "An easy everyday fashion pick when you want something simple within budget.",
+    "searchTerms": "women top ladies top tshirt fashion everyday wear under 400",
+    "image": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 5,
+    "name": "Small Sling Bag",
+    "cat": "Fashion",
+    "price": 399,
+    "badge": "UNDER ₹500",
+    "note": "A compact everyday carry option for phone, wallet and small essentials.",
+    "searchTerms": "sling bag crossbody bag women small handbag purse under 500",
+    "image": "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 6,
+    "name": "Compact Study Desk Lamp",
+    "cat": "Home",
+    "price": 199,
+    "badge": "UNDER ₹200",
+    "note": "A compact desk-light option for studying, reading and working from home.",
+    "searchTerms": "study lamp desk lamp table lamp reading lamp student under 200",
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 7,
+    "name": "Lip Balm",
+    "cat": "Beauty",
+    "price": 149,
+    "badge": "UNDER ₹200",
+    "note": "A simple everyday beauty essential that fits a small shopping budget.",
+    "searchTerms": "lip balm beauty skincare under 200 daily use",
+    "image": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 8,
+    "name": "Small Gift Set",
+    "cat": "Gifts",
+    "price": 299,
+    "badge": "GIFTABLE",
+    "note": "A simple budget-friendly gifting idea for birthdays, friends and small occasions.",
+    "searchTerms": "gift set birthday gift gift for her gift for friend under 500",
+    "image": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  },
+  {
+    "id": 9,
+    "name": "Scented Candle",
+    "cat": "Gifts",
+    "price": 249,
+    "badge": "GIFTABLE",
+    "note": "A small gifting and home-decor option when you want something simple and affordable.",
+    "searchTerms": "scented candle gift home decor candle under 300",
+    "image": "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=82",
+    "affiliateLink": "#"
+  }
 ]
