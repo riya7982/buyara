@@ -1,879 +1,261 @@
-let products = [];
+let products=[];
+let filter="All", budget=null, query="";
+let saved=new Set(JSON.parse(localStorage.getItem("buyaraSaved")||"[]"));
 
-let filter = "All";
-let budget = null;
-let query = "";
+const $=s=>document.querySelector(s);
+const money=n=>"₹"+Number(n).toLocaleString("en-IN");
 
-let saved = new Set();
+function toast(t){
+  const x=$("#toast");
+  x.textContent=t;
+  x.classList.add("show");
+  clearTimeout(window.tt);
+  window.tt=setTimeout(()=>x.classList.remove("show"),2400);
+}
 
-try {
-  saved = new Set(
-    JSON.parse(localStorage.getItem("buyaraSaved") || "[]")
+function matchesQuery(p){
+  return !query || `${p.name} ${p.cat} ${p.note}`.toLowerCase().includes(query);
+}
+
+function render(){
+  const list=products.filter(
+    p =>
+      (filter==="All" || p.cat===filter) &&
+      (!budget || p.price<=budget) &&
+      matchesQuery(p)
   );
-} catch {
-  saved = new Set();
-}
 
-
-/* =========================================
-   HELPERS
-========================================= */
-
-const $ = (selector) =>
-  document.querySelector(selector);
-
-
-function money(number) {
-  return "₹" + Number(number).toLocaleString("en-IN");
-}
-
-
-function toast(message) {
-
-  const element = $("#toast");
-
-  if (!element) return;
-
-  element.textContent = message;
-
-  element.classList.add("show");
-
-  clearTimeout(window.buyaraToast);
-
-  window.buyaraToast = setTimeout(() => {
-    element.classList.remove("show");
-  }, 2200);
-}
-
-
-/* =========================================
-   PRODUCT IMAGE
-========================================= */
-
-function productImage(id, width = 520) {
-
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=78&fm=webp`;
-
-}
-
-
-/* =========================================
-   LOAD PRODUCTS FROM JSON
-========================================= */
-
-async function loadProducts() {
-
-  try {
-
-    const response =
-      await fetch("./products.json", {
-        cache: "no-cache"
-      });
-
-    if (!response.ok) {
-      throw new Error("Could not load products.json");
-    }
-
-    products = await response.json();
-
-    renderProducts();
-
-    renderPopularProducts();
-
-    updateSavedCount();
-
-  } catch (error) {
-
-    console.error("BUYARA product loading error:", error);
-
-    const productGrid =
-      $("#productGrid");
-
-    if (productGrid) {
-
-      productGrid.innerHTML = `
-        <div class="no-results">
-
-          <strong>
-            Products couldn't be loaded.
-          </strong>
-
-          <span>
-            Make sure products.json is in the same folder as index.html.
-          </span>
-
-        </div>
-      `;
-
-    }
-
-  }
-
-}
-
-
-/* =========================================
-   GET FILTERED PRODUCTS
-========================================= */
-
-function getVisibleProducts() {
-
-  return products.filter(product => {
-
-    const matchesCategory =
-      filter === "All" ||
-      product.category === filter;
-
-    const matchesBudget =
-      !budget ||
-      (
-        budget === "premium"
-          ? Number(product.price) >= 5000
-          : Number(product.price) <= budget
-      );
-
-    const searchableText = `
-      ${product.name}
-      ${product.category}
-      ${product.note}
-      ${product.badge}
-    `.toLowerCase();
-
-    const matchesSearch =
-      !query ||
-      searchableText.includes(query);
-
-    return (
-      matchesCategory &&
-      matchesBudget &&
-      matchesSearch
-    );
-
-  });
-
-}
-
-
-/* =========================================
-   RENDER PRODUCTS
-========================================= */
-
-function renderProducts() {
-
-  const productGrid =
-    $("#productGrid");
-
-  if (!productGrid) return;
-
-  const visibleProducts =
-    getVisibleProducts();
-
-
-  if (!visibleProducts.length) {
-
-    productGrid.innerHTML = `
-
-      <div class="no-results">
-
-        <strong>
-          No matching finds yet.
-        </strong>
-
-        <span>
-          Try another category or search.
-        </span>
-
-      </div>
-
-    `;
-
-    updateSavedCount();
-
-    return;
-  }
-
-
-  productGrid.innerHTML =
-    visibleProducts.map(product => {
-
-      const isSaved =
-        saved.has(Number(product.id));
-
-      return `
-
-        <article class="product">
-
-          <div class="product-img">
-
-            <img
-              loading="lazy"
-              decoding="async"
-              src="${productImage(product.image)}"
-              alt="${product.name}"
-              width="520"
-              height="520"
-            >
-
-            <span class="badge">
-              ${product.badge}
-            </span>
-
-            <button
-              class="save ${isSaved ? "saved" : ""}"
-              data-save="${product.id}"
-              aria-label="Save ${product.name}"
-              type="button"
-            >
-              ${isSaved ? "♥" : "♡"}
-            </button>
-
-          </div>
-
-
-          <div class="product-body">
-
-            <small>
-              ${product.category.toUpperCase()}
-            </small>
-
-            <h3>
-              ${product.name}
-            </h3>
-
-            <div class="rating">
-
-              <b>
-                ★ ${product.rating}
-              </b>
-
-              <span>
-                (${product.reviews})
-              </span>
-
-            </div>
-
-
-            <div class="product-bottom">
-
-              <strong>
-                ${money(product.price)}
-              </strong>
-
-              <button
-                type="button"
-                data-check="${product.id}"
-              >
-                Check Price →
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-      `;
-
-    }).join("");
-
-
-  updateSavedCount();
-
-}
-
-
-/* =========================================
-   SAVED COUNT
-========================================= */
-
-function updateSavedCount() {
-
-  const savedCount =
-    $("#savedCount");
-
-  if (savedCount) {
-
-    savedCount.textContent =
-      saved.size;
-
-  }
-
-}
-
-
-/* =========================================
-   POPULAR PRODUCTS
-========================================= */
-
-function renderPopularProducts() {
-
-  const popularList =
-    $("#popularList");
-
-  if (!popularList || !products.length) {
-    return;
-  }
-
-
-  const popularProducts =
-    products.slice(1, 4);
-
-
-  popularList.innerHTML =
-    popularProducts.map(
-      (product, index) => `
-
-        <div class="popular-item">
-
-          <span>
-            ${index + 1}
-          </span>
-
+  $("#productGrid").innerHTML=list.length
+    ? list.map(p=>`
+      <article class="product">
+        <div class="product-img">
           <img
             loading="lazy"
             decoding="async"
-            src="${productImage(product.image, 180)}"
-            alt="${product.name}"
-            width="90"
-            height="90"
+            src="https://images.unsplash.com/${p.img}?auto=format&fit=crop&w=650&q=78&fm=webp"
+            alt="${p.name}"
           >
 
-          <div>
+          <span class="badge">${p.badge}</span>
 
-            <b>
-              ${product.name}
-            </b>
-
-            <small>
-              ★ ${product.rating}
-              |
-              ${money(product.price)}
-            </small>
-
-          </div>
-
+          <button
+            class="save ${saved.has(p.id)?"saved":""}"
+            data-save="${p.id}"
+            aria-label="Save ${p.name}"
+          >
+            ${saved.has(p.id)?"♥":"♡"}
+          </button>
         </div>
 
-      `
-    ).join("");
+        <div class="product-body">
+          <small>${p.cat.toUpperCase()}</small>
 
+          <h3>${p.name}</h3>
+
+          <p>${p.note}</p>
+
+          <div class="product-bottom">
+            <strong>${money(p.price)}</strong>
+            <button data-check="${p.id}">
+              See Shortlist →
+            </button>
+          </div>
+        </div>
+      </article>
+    `).join("")
+    :
+    `
+      <div class="empty-state">
+        <b>We haven't researched a matching pick yet.</b>
+        <span>
+          Try another budget or need. More verified shortlists
+          will be added as BUYARA grows.
+        </span>
+      </div>
+    `;
+
+  $("#savedCount").textContent=saved.size;
 }
 
+function applySearch(value){
+  query=value.trim().toLowerCase();
+  filter="All";
+  budget=null;
 
-/* =========================================
-   SAVE PRODUCT
-========================================= */
+  document
+    .querySelectorAll("[data-filter]")
+    .forEach(x =>
+      x.classList.toggle("active",x.dataset.filter==="All")
+    );
 
-document.addEventListener(
-  "click",
-  function(event) {
+  render();
 
-    const saveButton =
-      event.target.closest("[data-save]");
+  $("#popular").scrollIntoView({
+    behavior:"smooth"
+  });
+}
 
-    if (!saveButton) return;
+function setBudget(value){
+  budget=Number(value);
+  filter="All";
 
+  document
+    .querySelectorAll("[data-filter]")
+    .forEach(x =>
+      x.classList.toggle("active",x.dataset.filter==="All")
+    );
 
-    const productId =
-      Number(saveButton.dataset.save);
+  render();
 
+  $("#popular").scrollIntoView({
+    behavior:"smooth"
+  });
+}
 
-    if (saved.has(productId)) {
+document.addEventListener("click",e=>{
 
-      saved.delete(productId);
+  const save=e.target.closest("[data-save]");
 
-      toast(
-        "Removed from saved finds."
-      );
+  if(save){
+    const id=Number(save.dataset.save);
 
-    } else {
-
-      saved.add(productId);
-
-      toast(
-        "Saved to your finds ♡"
-      );
-
-    }
-
+    saved.has(id)
+      ? saved.delete(id)
+      : saved.add(id);
 
     localStorage.setItem(
       "buyaraSaved",
       JSON.stringify([...saved])
     );
 
-
-    renderProducts();
-
-  }
-);
-
-
-/* =========================================
-   CHECK PRICE
-========================================= */
-
-document.addEventListener(
-  "click",
-  function(event) {
-
-    const checkButton =
-      event.target.closest("[data-check]");
-
-    if (!checkButton) return;
-
-
-    event.preventDefault();
-
-
-    const productId =
-      Number(checkButton.dataset.check);
-
-
-    const product =
-      products.find(
-        item => Number(item.id) === productId
-      );
-
-
-    if (
-      product &&
-      product.affiliateLink &&
-      product.affiliateLink !== "#"
-    ) {
-
-      window.open(
-        product.affiliateLink,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-      return;
-    }
-
+    render();
 
     toast(
-      "Demo link — verified affiliate merchant link will be connected before launch."
+      saved.has(id)
+        ? "Saved to your finds ♡"
+        : "Removed from saved"
     );
-
   }
-);
 
+  const check=e.target.closest("[data-check]");
 
-/* =========================================
-   CATEGORY FILTER
-========================================= */
+  if(check){
+    e.preventDefault();
+
+    toast(
+      "This shortlist is being researched. Merchant links will be connected after verification."
+    );
+  }
+
+  const q=e.target.closest("[data-query]");
+
+  if(q){
+    e.preventDefault();
+    applySearch(q.dataset.query);
+  }
+
+  const b=e.target.closest("[data-budget]");
+
+  if(b){
+    e.preventDefault();
+    setBudget(b.dataset.budget);
+  }
+
+  const db=e.target.closest("[data-decision-budget]");
+
+  if(db){
+    setBudget(db.dataset.decisionBudget);
+  }
+});
 
 document
   .querySelectorAll("[data-filter]")
-  .forEach(button => {
+  .forEach(b =>
+    b.addEventListener("click",()=>{
+      filter=b.dataset.filter;
+      budget=null;
 
-    button.addEventListener(
-      "click",
-      function() {
+      document
+        .querySelectorAll("[data-filter]")
+        .forEach(x =>
+          x.classList.toggle("active",x===b)
+        );
 
-        filter =
-          this.dataset.filter;
+      render();
+    })
+  );
 
-        budget = null;
+$("#searchToggle").addEventListener(
+  "click",
+  ()=>{
+    $("#searchRow").classList.toggle("show");
 
-
-        document
-          .querySelectorAll("[data-filter]")
-          .forEach(item => {
-
-            item.classList.toggle(
-              "active",
-              item === this
-            );
-
-          });
-
-
-        renderProducts();
-
-      }
-    );
-
-  });
-
-
-/* =========================================
-   BUDGET FILTER
-========================================= */
-
-document
-  .querySelectorAll("[data-budget]")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      function() {
-
-        const selectedBudget =
-          this.dataset.budget;
-
-
-        budget =
-          selectedBudget === "premium"
-            ? "premium"
-            : Number(selectedBudget);
-
-
-        filter = "All";
-
-
-        document
-          .querySelectorAll("[data-filter]")
-          .forEach(item => {
-
-            item.classList.toggle(
-              "active",
-              item.dataset.filter === "All"
-            );
-
-          });
-
-
-        renderProducts();
-
-
-        const productsSection =
-          $("#products");
-
-
-        if (productsSection) {
-
-          productsSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        }
-
-      }
-    );
-
-  });
-
-
-/* =========================================
-   SEARCH
-========================================= */
-
-function performSearch(value) {
-
-  query =
-    value
-      .trim()
-      .toLowerCase();
-
-
-  filter = "All";
-
-  budget = null;
-
-
-  document
-    .querySelectorAll("[data-filter]")
-    .forEach(button => {
-
-      button.classList.toggle(
-        "active",
-        button.dataset.filter === "All"
-      );
-
-    });
-
-
-  renderProducts();
-
-
-  const productsSection =
-    $("#products");
-
-
-  if (productsSection) {
-
-    productsSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-
+    if($("#searchRow").classList.contains("show")){
+      $("#searchInput").focus();
+    }
   }
+);
 
-}
+$("#searchButton").addEventListener(
+  "click",
+  ()=>applySearch($("#searchInput").value)
+);
 
-
-/* =========================================
-   TOP SEARCH
-========================================= */
-
-const searchToggle =
-  $("#searchToggle");
-
-const searchRow =
-  $("#searchRow");
-
-const searchInput =
-  $("#searchInput");
-
-const searchButton =
-  $("#searchButton");
-
-
-if (searchToggle) {
-
-  searchToggle.addEventListener(
-    "click",
-    function() {
-
-      if (!searchRow) return;
-
-
-      searchRow.classList.toggle(
-        "show"
-      );
-
-
-      if (
-        searchRow.classList.contains(
-          "show"
-        ) &&
-        searchInput
-      ) {
-
-        setTimeout(
-          () => searchInput.focus(),
-          100
-        );
-
-      }
-
+$("#searchInput").addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Enter"){
+      applySearch(e.target.value);
     }
-  );
+  }
+);
 
-}
+$("#needSearchBtn").addEventListener(
+  "click",
+  ()=>applySearch($("#needInput").value)
+);
 
-
-if (searchButton) {
-
-  searchButton.addEventListener(
-    "click",
-    function() {
-
-      if (searchInput) {
-
-        performSearch(
-          searchInput.value
-        );
-
-      }
-
+$("#needInput").addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Enter"){
+      applySearch(e.target.value);
     }
-  );
-
-}
-
-
-if (searchInput) {
-
-  searchInput.addEventListener(
-    "keydown",
-    function(event) {
-
-      if (event.key === "Enter") {
-
-        performSearch(
-          this.value
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   HERO SEARCH
-========================================= */
-
-const heroSearch =
-  $("#heroSearch");
-
-const heroSearchButton =
-  $("#heroSearchBtn");
-
-
-if (heroSearchButton) {
-
-  heroSearchButton.addEventListener(
-    "click",
-    function() {
-
-      if (heroSearch) {
-
-        performSearch(
-          heroSearch.value
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-if (heroSearch) {
-
-  heroSearch.addEventListener(
-    "keydown",
-    function(event) {
-
-      if (event.key === "Enter") {
-
-        performSearch(
-          this.value
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   SAVED BUTTON
-========================================= */
-
-const savedToggle =
-  $("#savedToggle");
-
-
-if (savedToggle) {
-
-  savedToggle.addEventListener(
-    "click",
-    function() {
-
-      if (saved.size === 0) {
-
-        toast(
-          "You haven't saved any finds yet."
-        );
-
-      } else {
-
-        toast(
-          `${saved.size} saved find${
-            saved.size === 1 ? "" : "s"
-          } on this device.`
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   MOBILE MENU
-========================================= */
-
-const menuToggle =
-  $("#menuToggle");
-
-const mobileNav =
-  $("#mobileNav");
-
-
-if (menuToggle && mobileNav) {
-
-  menuToggle.addEventListener(
-    "click",
-    function() {
-
-      mobileNav.classList.toggle(
-        "open"
-      );
-
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        mobileNav.classList.contains(
-          "open"
-        )
-      );
-
-    }
-  );
-
-
-  mobileNav
-    .querySelectorAll("a")
-    .forEach(link => {
-
-      link.addEventListener(
-        "click",
-        function() {
-
-          mobileNav.classList.remove(
-            "open"
-          );
-
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =========================================
-   NEWSLETTER
-========================================= */
-
-const newsletter =
-  $("#newsletter");
-
-
-if (newsletter) {
-
-  newsletter.addEventListener(
-    "submit",
-    function(event) {
-
-      event.preventDefault();
-
-
-      toast(
-        "Preview only — newsletter integration will be connected before launch."
-      );
-
-
-      newsletter.reset();
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   START BUYARA
-========================================= */
-
-loadProducts();
+  }
+);
+
+$("#savedToggle").addEventListener(
+  "click",
+  ()=>toast(
+    `${saved.size} saved find${saved.size===1?"":"s"} on this device.`
+  )
+);
+
+$("#menuToggle").addEventListener(
+  "click",
+  ()=>$("#mobileNav").classList.toggle("open")
+);
+
+$("#newsletter").addEventListener(
+  "submit",
+  e=>{
+    e.preventDefault();
+
+    toast(
+      "Newsletter preview — email integration will be connected before launch."
+    );
+
+    e.target.reset();
+  }
+);
+
+fetch("./products.json")
+  .then(r=>r.json())
+  .then(data=>{
+    products=data;
+    render();
+  })
+  .catch(()=>{
+    products=[];
+    render();
+  });
