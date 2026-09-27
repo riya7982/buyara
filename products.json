@@ -1,101 +1,166 @@
-[
-  {
-    "id": 1,
-    "name": "Budget TWS Earbuds",
-    "cat": "Gadgets",
-    "price": 399,
-    "badge": "UNDER ₹500",
-    "note": "A budget-friendly everyday audio option for calls, music and casual listening.",
-    "searchTerms": "tws earbuds wireless earbuds bluetooth earphones audio calls music under 500",
-    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
+{
+  "meta": {
+    "note": "BUILD-STAGE DATA. Prices, availability and affiliate links are placeholders and must be verified with real marketplace research before launch.",
+    "lastUpdated": "2026-09-27"
   },
-  {
-    "id": 2,
-    "name": "Kitchen Storage Container Set",
-    "cat": "Home",
-    "price": 449,
-    "badge": "VALUE PICK",
-    "note": "Useful everyday storage for keeping kitchen shelves organised without spending too much.",
-    "searchTerms": "kitchen storage containers boxes organisation jars set under 500",
-    "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  },
-  {
-    "id": 3,
-    "name": "1L Water Bottle",
-    "cat": "Home",
-    "price": 349,
-    "badge": "UNDER ₹500",
-    "note": "A practical everyday bottle for college, office, gym and travel.",
-    "searchTerms": "water bottle 1 litre bottle college office gym travel under 500",
-    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  },
-  {
-    "id": 4,
-    "name": "Women's Everyday Top",
-    "cat": "Fashion",
-    "price": 399,
-    "badge": "BUDGET FASHION",
-    "note": "An easy everyday fashion pick when you want something simple within budget.",
-    "searchTerms": "women top ladies top tshirt fashion everyday wear under 400",
-    "image": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  },
-  {
-    "id": 5,
-    "name": "Small Sling Bag",
-    "cat": "Fashion",
-    "price": 399,
-    "badge": "UNDER ₹500",
-    "note": "A compact everyday carry option for phone, wallet and small essentials.",
-    "searchTerms": "sling bag crossbody bag women small handbag purse under 500",
-    "image": "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  },
-  {
-    "id": 6,
-    "name": "Compact Study Desk Lamp",
-    "cat": "Home",
-    "price": 199,
-    "badge": "UNDER ₹200",
-    "note": "A compact desk-light option for studying, reading and working from home.",
-    "searchTerms": "study lamp desk lamp table lamp reading lamp student under 200",
-    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  },
-  {
-    "id": 7,
-    "name": "Lip Balm",
-    "cat": "Beauty",
-    "price": 149,
-    "badge": "UNDER ₹200",
-    "note": "A simple everyday beauty essential that fits a small shopping budget.",
-    "searchTerms": "lip balm beauty skincare under 200 daily use",
-    "image": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  },
-  {
-    "id": 8,
-    "name": "Small Gift Set",
-    "cat": "Gifts",
-    "price": 299,
-    "badge": "GIFTABLE",
-    "note": "A simple budget-friendly gifting idea for birthdays, friends and small occasions.",
-    "searchTerms": "gift set birthday gift gift for her gift for friend under 500",
-    "image": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  },
-  {
-    "id": 9,
-    "name": "Scented Candle",
-    "cat": "Gifts",
-    "price": 249,
-    "badge": "GIFTABLE",
-    "note": "A small gifting and home-decor option when you want something simple and affordable.",
-    "searchTerms": "scented candle gift home decor candle under 300",
-    "image": "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=82",
-    "affiliateLink": "#"
-  }
-]
+  "categories": [
+    {
+      "id": "earbuds",
+      "label": "Budget TWS Earbuds",
+      "icon": "🎧",
+      "group": "Gadgets"
+    },
+    {
+      "id": "kitchen-storage",
+      "label": "Kitchen Storage Container Set",
+      "icon": "🫙",
+      "group": "Home"
+    },
+    {
+      "id": "water-bottle",
+      "label": "1L Water Bottle",
+      "icon": "💧",
+      "group": "Home"
+    },
+    {
+      "id": "tops",
+      "label": "Women's Tops Under ₹400",
+      "icon": "👚",
+      "group": "Fashion"
+    },
+    {
+      "id": "sling-bag",
+      "label": "Small Sling / Crossbody Bag",
+      "icon": "👜",
+      "group": "Fashion"
+    },
+    {
+      "id": "study-lamp",
+      "label": "Study / Desk Lamp",
+      "icon": "💡",
+      "group": "Home"
+    }
+  ],
+  "products": [
+    {
+      "id": 101,
+      "category": "earbuds",
+      "name": "Budget TWS Earbuds — Model to be finalised",
+      "price": 299,
+      "merchant": "Flipkart",
+      "rating": null,
+      "reviewCount": null,
+      "image": "",
+      "affiliateLink": "#",
+      "bestFor": "Everyday calls and music on a tight budget",
+      "whyPicked": "Placeholder — replace after verifying current listing, price and rating count.",
+      "thingsToKnow": "Not yet verified. Do not publish live.",
+      "searchTerms": "tws earbuds budget wireless"
+    },
+    {
+      "id": 102,
+      "category": "kitchen-storage",
+      "name": "Kitchen Storage Container Set — to be finalised",
+      "price": 399,
+      "merchant": "Amazon",
+      "rating": null,
+      "reviewCount": null,
+      "image": "",
+      "affiliateLink": "#",
+      "bestFor": "Small kitchens needing airtight storage",
+      "whyPicked": "Placeholder — replace after research.",
+      "thingsToKnow": "Not yet verified. Do not publish live.",
+      "searchTerms": "kitchen storage container set airtight"
+    },
+    {
+      "id": 103,
+      "category": "water-bottle",
+      "name": "1L Water Bottle — to be finalised",
+      "price": 299,
+      "merchant": "Amazon",
+      "rating": null,
+      "reviewCount": null,
+      "image": "",
+      "affiliateLink": "#",
+      "bestFor": "College, office or gym daily carry",
+      "whyPicked": "Placeholder — replace after research.",
+      "thingsToKnow": "Not yet verified. Do not publish live.",
+      "searchTerms": "1 litre water bottle leakproof"
+    },
+    {
+      "id": 104,
+      "category": "tops",
+      "name": "Women's Top — to be finalised",
+      "price": 349,
+      "merchant": "Myntra",
+      "rating": null,
+      "reviewCount": null,
+      "image": "",
+      "affiliateLink": "#",
+      "bestFor": "Everyday casual wear under ₹400",
+      "whyPicked": "Placeholder — replace after research.",
+      "thingsToKnow": "Not yet verified. Do not publish live.",
+      "searchTerms": "women tops under 400"
+    },
+    {
+      "id": 105,
+      "category": "sling-bag",
+      "name": "Small Sling / Crossbody Bag — to be finalised",
+      "price": 449,
+      "merchant": "Myntra",
+      "rating": null,
+      "reviewCount": null,
+      "image": "",
+      "affiliateLink": "#",
+      "bestFor": "Light daily carry — phone, cards, keys",
+      "whyPicked": "Placeholder — replace after research.",
+      "thingsToKnow": "Not yet verified. Do not publish live.",
+      "searchTerms": "small sling bag crossbody women"
+    },
+    {
+      "id": 106,
+      "category": "study-lamp",
+      "name": "Study / Desk Lamp — to be finalised",
+      "price": 249,
+      "merchant": "Amazon",
+      "rating": null,
+      "reviewCount": null,
+      "image": "",
+      "affiliateLink": "#",
+      "bestFor": "Desk study and work-from-home setups",
+      "whyPicked": "Placeholder — replace after research.",
+      "thingsToKnow": "Not yet verified. Do not publish live.",
+      "searchTerms": "study lamp desk usb rechargeable"
+    }
+  ],
+  "guides": [
+    {
+      "slug": "best-water-bottles-under-300",
+      "title": "Best Water Bottles Under ₹300",
+      "category": "water-bottle",
+      "blurb": "Compare capacity, leak resistance, material, portability and price to find the right one for college, office or gym.",
+      "status": "draft"
+    },
+    {
+      "slug": "best-study-lamps-under-200",
+      "title": "Best Study Lamps Under ₹200",
+      "category": "study-lamp",
+      "blurb": "Rechargeable vs USB, brightness, modes, desk space and value — explained without 100 tabs of listings.",
+      "status": "draft"
+    },
+    {
+      "slug": "best-tws-earbuds-under-500",
+      "title": "Best TWS Earbuds Under ₹500",
+      "category": "earbuds",
+      "blurb": "Sound, calling quality, battery life, comfort, connectivity and price compared.",
+      "status": "draft"
+    },
+    {
+      "slug": "best-gifts-under-500",
+      "title": "Best Gifts Under ₹500",
+      "category": null,
+      "blurb": "Gift ideas narrowed by person, occasion and budget instead of endless scrolling.",
+      "status": "draft"
+    }
+  ]
+}
