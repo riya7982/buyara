@@ -1,261 +1,793 @@
-let products=[];
-let filter="All", budget=null, query="";
-let saved=new Set(JSON.parse(localStorage.getItem("buyaraSaved")||"[]"));
+let products = [];
 
-const $=s=>document.querySelector(s);
-const money=n=>"₹"+Number(n).toLocaleString("en-IN");
+let activeFilter = "All";
+let activeBudget = null;
+let searchQuery = "";
 
-function toast(t){
-  const x=$("#toast");
-  x.textContent=t;
-  x.classList.add("show");
-  clearTimeout(window.tt);
-  window.tt=setTimeout(()=>x.classList.remove("show"),2400);
+let saved = new Set(
+  JSON.parse(localStorage.getItem("buyaraSaved") || "[]")
+);
+
+
+/* -----------------------------
+   HELPERS
+----------------------------- */
+
+const $ = (selector) => document.querySelector(selector);
+
+const money = (number) =>
+  "₹" + Number(number).toLocaleString("en-IN");
+
+
+function showToast(message) {
+
+  const toast = $("#toast");
+
+  if (!toast) return;
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(window.buyaraToast);
+
+  window.buyaraToast = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2400);
 }
 
-function matchesQuery(p){
-  return !query || `${p.name} ${p.cat} ${p.note}`.toLowerCase().includes(query);
+
+/* -----------------------------
+   PRODUCT FILTERING
+----------------------------- */
+
+function productMatches(product) {
+
+  const categoryMatch =
+    activeFilter === "All" ||
+    product.cat === activeFilter;
+
+
+  const budgetMatch =
+    !activeBudget ||
+    Number(product.price) <= Number(activeBudget);
+
+
+  const text =
+    `${product.name} ${product.cat} ${product.note} ${product.searchTerms || ""}`
+      .toLowerCase();
+
+
+  const searchMatch =
+    !searchQuery ||
+    text.includes(searchQuery);
+
+
+  return categoryMatch &&
+         budgetMatch &&
+         searchMatch;
 }
 
-function render(){
-  const list=products.filter(
-    p =>
-      (filter==="All" || p.cat===filter) &&
-      (!budget || p.price<=budget) &&
-      matchesQuery(p)
-  );
 
-  $("#productGrid").innerHTML=list.length
-    ? list.map(p=>`
-      <article class="product">
-        <div class="product-img">
-          <img
-            loading="lazy"
-            decoding="async"
-            src="https://images.unsplash.com/${p.img}?auto=format&fit=crop&w=650&q=78&fm=webp"
-            alt="${p.name}"
-          >
+/* -----------------------------
+   RENDER PRODUCTS
+----------------------------- */
 
-          <span class="badge">${p.badge}</span>
+function renderProducts() {
 
-          <button
-            class="save ${saved.has(p.id)?"saved":""}"
-            data-save="${p.id}"
-            aria-label="Save ${p.name}"
-          >
-            ${saved.has(p.id)?"♥":"♡"}
-          </button>
-        </div>
+  const grid = $("#productGrid");
 
-        <div class="product-body">
-          <small>${p.cat.toUpperCase()}</small>
+  if (!grid) return;
 
-          <h3>${p.name}</h3>
 
-          <p>${p.note}</p>
+  const filteredProducts =
+    products.filter(productMatches);
 
-          <div class="product-bottom">
-            <strong>${money(p.price)}</strong>
-            <button data-check="${p.id}">
-              See Shortlist →
-            </button>
-          </div>
-        </div>
-      </article>
-    `).join("")
-    :
-    `
+
+  if (!filteredProducts.length) {
+
+    grid.innerHTML = `
       <div class="empty-state">
-        <b>We haven't researched a matching pick yet.</b>
-        <span>
-          Try another budget or need. More verified shortlists
-          will be added as BUYARA grows.
-        </span>
+
+        <div>
+          <b>No matching picks yet.</b>
+
+          <span>
+            Try another need or a slightly different budget.
+          </span>
+        </div>
+
       </div>
     `;
 
-  $("#savedCount").textContent=saved.size;
+    return;
+  }
+
+
+  grid.innerHTML =
+    filteredProducts
+      .map(product => {
+
+        const isSaved =
+          saved.has(String(product.id)) ||
+          saved.has(Number(product.id));
+
+
+        return `
+
+          <article class="product">
+
+            <div class="product-img">
+
+              <img
+                src="${product.image}"
+                alt="${escapeHTML(product.name)}"
+                loading="lazy"
+                decoding="async"
+              >
+
+              <span class="badge">
+                ${escapeHTML(product.badge)}
+              </span>
+
+
+              <button
+                class="save ${isSaved ? "saved" : ""}"
+                data-save="${product.id}"
+                aria-label="Save ${escapeHTML(product.name)}"
+              >
+                ${isSaved ? "♥" : "♡"}
+              </button>
+
+            </div>
+
+
+            <div class="product-body">
+
+              <small>
+                ${escapeHTML(product.cat)}
+              </small>
+
+
+              <h3>
+                ${escapeHTML(product.name)}
+              </h3>
+
+
+              <p>
+                ${escapeHTML(product.note)}
+              </p>
+
+
+              <div class="product-bottom">
+
+                <strong>
+                  ${money(product.price)}
+                </strong>
+
+
+                <button
+                  data-check="${product.id}"
+                >
+                  Check Price →
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        `;
+
+      })
+      .join("");
 }
 
-function applySearch(value){
-  query=value.trim().toLowerCase();
-  filter="All";
-  budget=null;
+
+/* -----------------------------
+   SEARCH
+----------------------------- */
+
+function performSearch(value) {
+
+  searchQuery =
+    value
+      .trim()
+      .toLowerCase();
+
+
+  activeFilter = "All";
+  activeBudget = null;
+
 
   document
     .querySelectorAll("[data-filter]")
-    .forEach(x =>
-      x.classList.toggle("active",x.dataset.filter==="All")
-    );
+    .forEach(button => {
 
-  render();
+      button.classList.toggle(
+        "active",
+        button.dataset.filter === "All"
+      );
 
-  $("#popular").scrollIntoView({
-    behavior:"smooth"
-  });
+    });
+
+
+  renderProducts();
+
+
+  const popular =
+    $("#popular");
+
+  if (popular) {
+
+    popular.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
 }
 
-function setBudget(value){
-  budget=Number(value);
-  filter="All";
+
+/* -----------------------------
+   BUDGET
+----------------------------- */
+
+function selectBudget(value) {
+
+  activeBudget = Number(value);
+
+  activeFilter = "All";
+
+  searchQuery = "";
+
 
   document
     .querySelectorAll("[data-filter]")
-    .forEach(x =>
-      x.classList.toggle("active",x.dataset.filter==="All")
-    );
+    .forEach(button => {
 
-  render();
+      button.classList.toggle(
+        "active",
+        button.dataset.filter === "All"
+      );
 
-  $("#popular").scrollIntoView({
-    behavior:"smooth"
-  });
+    });
+
+
+  renderProducts();
+
+
+  const popular =
+    $("#popular");
+
+  if (popular) {
+
+    popular.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
 }
 
-document.addEventListener("click",e=>{
 
-  const save=e.target.closest("[data-save]");
+/* -----------------------------
+   ESCAPE HTML
+----------------------------- */
 
-  if(save){
-    const id=Number(save.dataset.save);
+function escapeHTML(value) {
 
-    saved.has(id)
-      ? saved.delete(id)
-      : saved.add(id);
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* -----------------------------
+   CLICK HANDLER
+----------------------------- */
+
+document.addEventListener("click", (event) => {
+
+
+  /* SAVE */
+
+  const saveButton =
+    event.target.closest("[data-save]");
+
+
+  if (saveButton) {
+
+    const id =
+      String(saveButton.dataset.save);
+
+
+    if (saved.has(id)) {
+
+      saved.delete(id);
+
+      showToast("Removed from saved");
+
+    } else {
+
+      saved.add(id);
+
+      showToast("Saved to your finds ♥");
+
+    }
+
 
     localStorage.setItem(
       "buyaraSaved",
       JSON.stringify([...saved])
     );
 
-    render();
 
-    toast(
-      saved.has(id)
-        ? "Saved to your finds ♡"
-        : "Removed from saved"
+    updateSavedCount();
+
+    renderProducts();
+
+    return;
+  }
+
+
+  /* CHECK PRICE */
+
+  const checkButton =
+    event.target.closest("[data-check]");
+
+
+  if (checkButton) {
+
+    const id =
+      String(checkButton.dataset.check);
+
+
+    const product =
+      products.find(
+        item => String(item.id) === id
+      );
+
+
+    if (!product) return;
+
+
+    if (
+      product.affiliateLink &&
+      product.affiliateLink !== "#"
+    ) {
+
+      window.open(
+        product.affiliateLink,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    } else {
+
+      showToast(
+        "Merchant link will be connected after product verification."
+      );
+
+    }
+
+    return;
+  }
+
+
+  /* NEED CARDS */
+
+  const queryButton =
+    event.target.closest("[data-query]");
+
+
+  if (queryButton) {
+
+    const query =
+      queryButton.dataset.query;
+
+
+    const input =
+      $("#needInput");
+
+
+    if (input) {
+      input.value = query;
+    }
+
+
+    performSearch(query);
+
+    return;
+  }
+
+
+  /* BUDGET */
+
+  const budgetButton =
+    event.target.closest("[data-decision-budget]");
+
+
+  if (budgetButton) {
+
+    selectBudget(
+      budgetButton.dataset.decisionBudget
     );
+
+    return;
   }
 
-  const check=e.target.closest("[data-check]");
-
-  if(check){
-    e.preventDefault();
-
-    toast(
-      "This shortlist is being researched. Merchant links will be connected after verification."
-    );
-  }
-
-  const q=e.target.closest("[data-query]");
-
-  if(q){
-    e.preventDefault();
-    applySearch(q.dataset.query);
-  }
-
-  const b=e.target.closest("[data-budget]");
-
-  if(b){
-    e.preventDefault();
-    setBudget(b.dataset.budget);
-  }
-
-  const db=e.target.closest("[data-decision-budget]");
-
-  if(db){
-    setBudget(db.dataset.decisionBudget);
-  }
 });
+
+
+/* -----------------------------
+   FILTER BUTTONS
+----------------------------- */
 
 document
   .querySelectorAll("[data-filter]")
-  .forEach(b =>
-    b.addEventListener("click",()=>{
-      filter=b.dataset.filter;
-      budget=null;
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      activeFilter =
+        button.dataset.filter;
+
+      activeBudget = null;
+
+      searchQuery = "";
+
 
       document
         .querySelectorAll("[data-filter]")
-        .forEach(x =>
-          x.classList.toggle("active",x===b)
-        );
+        .forEach(item => {
 
-      render();
-    })
+          item.classList.toggle(
+            "active",
+            item === button
+          );
+
+        });
+
+
+      renderProducts();
+
+    });
+
+  });
+
+
+/* -----------------------------
+   SEARCH TOGGLE
+----------------------------- */
+
+const searchToggle =
+  $("#searchToggle");
+
+
+if (searchToggle) {
+
+  searchToggle.addEventListener(
+    "click",
+    () => {
+
+      const row =
+        $("#searchRow");
+
+
+      if (!row) return;
+
+
+      row.classList.toggle("show");
+
+
+      if (row.classList.contains("show")) {
+
+        const input =
+          $("#searchInput");
+
+        if (input) input.focus();
+
+      }
+
+    }
   );
 
-$("#searchToggle").addEventListener(
-  "click",
-  ()=>{
-    $("#searchRow").classList.toggle("show");
+}
 
-    if($("#searchRow").classList.contains("show")){
-      $("#searchInput").focus();
+
+/* -----------------------------
+   SEARCH BUTTON
+----------------------------- */
+
+const searchButton =
+  $("#searchButton");
+
+
+if (searchButton) {
+
+  searchButton.addEventListener(
+    "click",
+    () => {
+
+      performSearch(
+        $("#searchInput").value
+      );
+
     }
-  }
-);
+  );
 
-$("#searchButton").addEventListener(
-  "click",
-  ()=>applySearch($("#searchInput").value)
-);
+}
 
-$("#searchInput").addEventListener(
-  "keydown",
-  e=>{
-    if(e.key==="Enter"){
-      applySearch(e.target.value);
+
+/* -----------------------------
+   SEARCH ENTER
+----------------------------- */
+
+const searchInput =
+  $("#searchInput");
+
+
+if (searchInput) {
+
+  searchInput.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+
+        performSearch(
+          event.target.value
+        );
+
+      }
+
     }
-  }
-);
+  );
 
-$("#needSearchBtn").addEventListener(
-  "click",
-  ()=>applySearch($("#needInput").value)
-);
+}
 
-$("#needInput").addEventListener(
-  "keydown",
-  e=>{
-    if(e.key==="Enter"){
-      applySearch(e.target.value);
+
+/* -----------------------------
+   HERO SEARCH
+----------------------------- */
+
+const needSearchButton =
+  $("#needSearchBtn");
+
+
+if (needSearchButton) {
+
+  needSearchButton.addEventListener(
+    "click",
+    () => {
+
+      performSearch(
+        $("#needInput").value
+      );
+
     }
+  );
+
+}
+
+
+const needInput =
+  $("#needInput");
+
+
+if (needInput) {
+
+  needInput.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+
+        performSearch(
+          event.target.value
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* -----------------------------
+   SAVED COUNT
+----------------------------- */
+
+function updateSavedCount() {
+
+  const count =
+    $("#savedCount");
+
+  if (count) {
+
+    count.textContent =
+      saved.size;
+
   }
-);
 
-$("#savedToggle").addEventListener(
-  "click",
-  ()=>toast(
-    `${saved.size} saved find${saved.size===1?"":"s"} on this device.`
-  )
-);
+}
 
-$("#menuToggle").addEventListener(
-  "click",
-  ()=>$("#mobileNav").classList.toggle("open")
-);
 
-$("#newsletter").addEventListener(
-  "submit",
-  e=>{
-    e.preventDefault();
+updateSavedCount();
 
-    toast(
-      "Newsletter preview — email integration will be connected before launch."
+
+/* -----------------------------
+   SAVED BUTTON
+----------------------------- */
+
+const savedToggle =
+  $("#savedToggle");
+
+
+if (savedToggle) {
+
+  savedToggle.addEventListener(
+    "click",
+    () => {
+
+      if (!saved.size) {
+
+        showToast(
+          "You haven't saved anything yet."
+        );
+
+      } else {
+
+        showToast(
+          `${saved.size} saved find${saved.size === 1 ? "" : "s"} on this device.`
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* -----------------------------
+   MOBILE MENU
+----------------------------- */
+
+const menuToggle =
+  $("#menuToggle");
+
+
+if (menuToggle) {
+
+  menuToggle.addEventListener(
+    "click",
+    () => {
+
+      const nav =
+        $("#mobileNav");
+
+      if (nav) {
+        nav.classList.toggle("open");
+      }
+
+    }
+  );
+
+}
+
+
+/* -----------------------------
+   NEWSLETTER
+----------------------------- */
+
+const newsletter =
+  $("#newsletter");
+
+
+if (newsletter) {
+
+  newsletter.addEventListener(
+    "submit",
+    event => {
+
+      event.preventDefault();
+
+      showToast(
+        "Newsletter signup will be connected before launch."
+      );
+
+      newsletter.reset();
+
+    }
+  );
+
+}
+
+
+/* -----------------------------
+   LOAD PRODUCTS
+----------------------------- */
+
+async function loadProducts() {
+
+  const grid =
+    $("#productGrid");
+
+
+  try {
+
+    const response =
+      await fetch("./products.json", {
+        cache: "no-store"
+      });
+
+
+    if (!response.ok) {
+      throw new Error(
+        `products.json returned ${response.status}`
+      );
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (!Array.isArray(data)) {
+      throw new Error(
+        "products.json must contain an array"
+      );
+    }
+
+
+    products = data;
+
+
+    renderProducts();
+
+
+  } catch (error) {
+
+    console.error(
+      "BUYARA product loading error:",
+      error
     );
 
-    e.target.reset();
-  }
-);
 
-fetch("./products.json")
-  .then(r=>r.json())
-  .then(data=>{
-    products=data;
-    render();
-  })
-  .catch(()=>{
-    products=[];
-    render();
-  });
+    if (grid) {
+
+      grid.innerHTML = `
+
+        <div class="empty-state">
+
+          <div>
+
+            <b>Products are loading incorrectly.</b>
+
+            <span>
+              Please make sure products.json is uploaded
+              in the same folder as index.html.
+            </span>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+}
+
+
+loadProducts();
