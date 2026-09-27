@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BUYARA — handpicked finds, useful products, gifts and shopping guides made easier to choose.">
+  <meta name="theme-color" content="#ff2f86">
+  <title>BUYARA — Handpicked Finds. Made Easier to Choose.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="announcement">
+  <span>✨</span> THE FESTIVE EDIT IS LIVE — gifts, décor & feel-good finds
+  <a href="#festive">Explore festive picks →</a>
+</div>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="#" class="logo">BUYARA<span>.</span></a>
+
+    <nav class="desktop-nav">
+      <a class="active" href="#">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#budget">Under ₹999</a>
+      <a href="#gifts">Gifts</a>
+      <a href="#festive">Festive <i></i></a>
+      <a href="#guides">Guides</a>
+      <a href="#deals">Deals</a>
+    </nav>
+
+    <div class="nav-tools">
+      <button id="searchToggle" aria-label="Search">⌕</button>
+      <button id="savedToggle" aria-label="Saved products">♡<sup id="savedCount">0</sup></button>
+      <button aria-label="Account">♙</button>
+      <button aria-label="Cart">🛒<sup>2</sup></button>
+      <button class="mobile-menu" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+
+  <div class="search-row" id="searchRow">
+    <div class="search-input-wrap">
+      <span>⌕</span>
+      <input id="searchInput" type="search" placeholder="Search products, gifts, gadgets, beauty, home...">
+      <button id="searchButton">Search</button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#categories">Categories</a>
+    <a href="#budget">Under ₹999</a>
+    <a href="#gifts">Gifts</a>
+    <a href="#festive">Festive</a>
+    <a href="#guides">Guides</a>
+    <a href="#deals">Deals</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero-shell">
+  <div class="hero-main">
+    <div class="hero-copy">
+      <span class="eyebrow">HANDPICKED FINDS</span>
+      <h1>Smart Finds<br>For a <em>Brighter You</em></h1>
+      <p>Curated products, useful guides and festive favourites — all in one place.</p>
+
+      <div class="hero-search">
+        <span>⌕</span>
+        <input id="heroSearch" type="search" placeholder="Search products, gifts, gadgets, beauty...">
+        <button id="heroSearchBtn">Search</button>
+      </div>
+
+      <div class="trust-points">
+        <span>✿ Budget Friendly</span>
+        <span>♡ Trusted Picks</span>
+        <span>◇ Real Reviews</span>
+        <span>✓ Curated with Care</span>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200&q=88" alt="Festive gifts and shopping finds">
+      <div class="hero-tag">Good Finds<br><b>Happier Days</b> ♥</div>
+      <div class="hero-flower flower-a">✿</div>
+      <div class="hero-flower flower-b">✿</div>
+    </div>
+  </div>
+
+  <div class="hero-side">
+    <article class="side-card festive-card" id="festive">
+      <img src="https://images.unsplash.com/photo-1602874801006-e26f6c3d5a90?w=700&q=85" alt="Festive décor">
+      <div class="side-overlay">
+        <span>FESTIVE FINDS</span>
+        <p>Décor, gifting, fashion, beauty & more for the season ahead.</p>
+        <a href="#products">Explore Festive Picks →</a>
+      </div>
+    </article>
+
+    <article class="side-card gift-card">
+      <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=700&q=85" alt="Gift boxes">
+      <div class="side-overlay">
+        <span>GIFTING MADE EASY</span>
+        <p>Thoughtful picks for everyone on your list.</p>
+        <a href="#gifts">Explore Gift Ideas →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="category-strip" id="categories">
+  <a href="#products"><span class="cat-icon fashion">👗</span><b>Fashion</b></a>
+  <a href="#products"><span class="cat-icon beauty">💄</span><b>Beauty</b></a>
+  <a href="#products"><span class="cat-icon home">🪴</span><b>Home</b></a>
+  <a href="#products"><span class="cat-icon kitchen">🍳</span><b>Kitchen & Food</b></a>
+  <a href="#products"><span class="cat-icon gadgets">🎧</span><b>Gadgets</b></a>
+  <a href="#gifts"><span class="cat-icon gifts">🎁</span><b>Gifts</b></a>
+  <a href="#festive"><span class="cat-icon festive">🪔</span><b>Festive</b></a>
+  <a href="#budget"><span class="cat-icon budget-icon">₹</span><b>Under ₹999</b></a>
+  <a href="#deals"><span class="cat-icon deals-icon">%</span><b>Deals</b></a>
+  <a href="#categories"><span class="cat-icon all-icon">•••</span><b>All Categories</b></a>
+</section>
+
+<section class="content-grid" id="products">
+  <div class="main-column">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">DON'T MISS THESE 🔥</span>
+        <h2>Trending Picks Under ₹999</h2>
+      </div>
+      <a href="#products">View All →</a>
+    </div>
+
+    <div class="filter-row" id="filters">
+      <button class="active" data-filter="All">All</button>
+      <button data-filter="Fashion">Fashion</button>
+      <button data-filter="Beauty">Beauty</button>
+      <button data-filter="Home">Home</button>
+      <button data-filter="Gadgets">Gadgets</button>
+      <button data-filter="Gifts">Gifts</button>
+      <button data-filter="Festive">Festive</button>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+    <p class="preview-note">Preview catalogue for the BUYARA build. Verified merchant links, live prices and affiliate tracking will be connected before launch.</p>
+  </div>
+
+  <aside class="right-rail">
+    <div class="rail-card budget-card" id="budget">
+      <div class="rail-title">
+        <div><span>SHOP BY BUDGET</span><b>Find the best picks at every price point.</b></div>
+        <a href="#products">View All →</a>
+      </div>
+      <div class="budget-grid">
+        <a href="#products" data-budget="199">Under <strong>₹199</strong></a>
+        <a href="#products" data-budget="499">Under <strong>₹499</strong></a>
+        <a href="#products" data-budget="999">Under <strong>₹999</strong></a>
+        <a href="#products" data-budget="1999">Under <strong>₹1,999</strong></a>
+        <a href="#products" data-budget="4999">Under <strong>₹4,999</strong></a>
+        <a href="#products" data-budget="premium"><strong>₹5,000+</strong></a>
+      </div>
+    </div>
+
+    <div class="rail-card popular-card">
+      <div class="rail-title"><div><span>POPULAR RIGHT NOW</span></div><a href="#products">View All →</a></div>
+      <div class="popular-list" id="popularList"></div>
+    </div>
+
+    <div class="rail-card inbox-card">
+      <span class="mail-icon">✉</span>
+      <h3>Get the Best Finds in Your Inbox <i>✦</i></h3>
+      <p>Curated picks, guides, deals and festive favourites. No spam, just the good stuff.</p>
+      <form id="newsletter">
+        <input type="email" placeholder="Your email address" required>
+        <button>Subscribe →</button>
+      </form>
+    </div>
+  </aside>
+</section>
+
+<section class="deal-row" id="deals">
+  <a class="deal deal-pink" href="#products"><span class="deal-icon">%</span><div><b>Today's Top Deals</b><small>Limited-time offers on our top picks.</small><strong>Shop Deals →</strong></div></a>
+  <a class="deal deal-blue" href="#products"><span class="deal-icon">✦</span><div><b>New Arrivals</b><small>Fresh finds you'll love.</small><strong>Explore Now →</strong></div></a>
+  <a class="deal deal-orange" href="#products"><span class="deal-icon">★</span><div><b>Editor's Picks</b><small>Handpicked just for you.</small><strong>See Picks →</strong></div></a>
+</section>
+
+<section class="guides-section" id="guides">
+  <div class="section-heading">
+    <div><span class="eyebrow">SMARTER SHOPPING</span><h2>Latest Guides & Comparisons</h2></div>
+    <a href="#guides">View All →</a>
+  </div>
+
+  <div class="guide-grid">
+    <article class="guide">
+      <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700&q=82" alt="Desk setup">
+      <div><span>BUYING GUIDE</span><h3>Best Study Lamps Under ₹500</h3><p>Top options for better focus and productivity.</p><a href="#">Read Guide →</a></div>
+    </article>
+    <article class="guide">
+      <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=700&q=82" alt="Shopping packages">
+      <div><span>SHOPPING TIPS</span><h3>Amazon vs Flipkart: Which Is Better for Budget Shopping?</h3><a href="#">Read Guide →</a></div>
+    </article>
+    <article class="guide">
+      <img src="https://images.unsplash.com/photo-1602874801006-e26f6c3d5a90?w=700&q=82" alt="Festive lights">
+      <div><span>FESTIVE GUIDE</span><h3>10 Must-Have Products for a Beautiful Diwali</h3><a href="#">Read Guide →</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="gift-section" id="gifts">
+  <div class="gift-copy">
+    <span class="eyebrow">WHEN YOU'RE STUCK 🎁</span>
+    <h2>Gifts that<br>don't feel last-minute.</h2>
+    <p>Start with the person, occasion or budget — then let BUYARA narrow it down.</p>
+    <a href="#products">Explore Gift Ideas →</a>
+  </div>
+  <div class="gift-grid">
+    <a href="#products">For Her <b>↗</b></a>
+    <a href="#products">For Him <b>↗</b></a>
+    <a href="#products">For Parents <b>↗</b></a>
+    <a href="#products">For Friends <b>↗</b></a>
+    <a href="#products">For Couples <b>↗</b></a>
+    <a href="#products">For Colleagues <b>↗</b></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <a class="logo" href="#">BUYARA<span>.</span></a>
+    <p>Handpicked finds. Made easier to choose.</p>
+    <div class="socials"><span>◎</span><span>◉</span><span>▶</span><span>p</span></div>
+  </div>
+  <div><b>Shop</b><a href="#categories">All Categories</a><a href="#budget">Under ₹999</a><a href="#gifts">Gifts</a><a href="#festive">Festive</a><a href="#deals">Deals</a></div>
+  <div><b>Guides</b><a href="#guides">Buying Guides</a><a href="#guides">Product Comparisons</a><a href="#guides">Shopping Tips</a><a href="#guides">Seasonal Picks</a><a href="#products">New Arrivals</a></div>
+  <div><b>Company</b><a href="#">About</a><a href="#">Contact</a><a href="#">Affiliate Disclosure</a><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  <div class="copyright">© 2026 BUYARA. Product links may earn us a commission.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
