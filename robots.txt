@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://riya7982.github.io/buyara/sitemap.xml
