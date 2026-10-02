@@ -1,6 +1,6 @@
 {
   "meta": {
-    "note": "BUILD-STAGE DATA. Prices, availability and affiliate links are placeholders and must be verified with real marketplace research before launch.",
+    "note": "BUILD-STAGE DATA. Prices, availability and affiliate links are verification points. Recheck price/stock before launch. Affiliate links are intentionally left as # until final Profit Links are added.",
     "lastUpdated": "2026-10-03"
   },
   "categories": [
@@ -11,9 +11,15 @@
       "group": "Gadgets"
     },
     {
-      "id": "kitchen-storage",
-      "label": "Kitchen Storage Container Set",
-      "icon": "🫙",
+      "id": "skincare",
+      "label": "Skincare",
+      "icon": "🧴",
+      "group": "Beauty"
+    },
+    {
+      "id": "study-lamp",
+      "label": "Study / Desk Lamp",
+      "icon": "💡",
       "group": "Home"
     },
     {
@@ -23,22 +29,10 @@
       "group": "Home"
     },
     {
-      "id": "tops",
-      "label": "Women's Tops Under ₹400",
-      "icon": "👚",
+      "id": "ethnic-set",
+      "label": "Women's Ethnic / Partywear Set",
+      "icon": "👗",
       "group": "Fashion"
-    },
-    {
-      "id": "sling-bag",
-      "label": "Small Sling / Crossbody Bag",
-      "icon": "👜",
-      "group": "Fashion"
-    },
-    {
-      "id": "study-lamp",
-      "label": "Study / Desk Lamp",
-      "icon": "💡",
-      "group": "Home"
     }
   ],
   "products": [
@@ -50,96 +44,136 @@
       "merchant": "GOBOULT",
       "rating": 4.1,
       "reviewCount": 509822,
-      "image": "",
+      "image": "https://cdn.grofers.com/da/cms-assets/cms/product/abba5ab5-1677-4c2e-b28c-068021101ce8.jpg",
       "affiliateLink": "#",
       "badge": "Popular Pick",
       "bestFor": "Daily music, calls and casual gaming",
-      "whyPicked": "Long battery backup plus ENC, low-latency mode and Type-C charging make this a useful everyday TWS option around the ₹1,000 range.",
-      "thingsToKnow": "Price and availability can change on the retailer's website. Check the latest price before buying.",
+      "whyPicked": "A feature-heavy everyday TWS with 60-hour total playback, ENC, adaptive low latency and Type-C charging.",
+      "thingsToKnow": "The listed price is a current reference point and can change. Check the merchant page before buying.",
       "features": [
-        "Up to 60 hours total playtime",
-        "Environmental Noise Cancellation (ENC)",
-        "Low-latency mode",
-        "Type-C charging",
+        "Up to 60 hours total playback",
+        "Zen Mode ENC",
+        "Adaptive low-latency mode",
         "10mm drivers",
+        "Type-C charging",
         "IPX5 water resistance"
       ],
-      "searchTerms": "GOBOULT Z40 TWS earbuds wireless earbuds"
+      "searchTerms": "GOBOULT Z40 TWS earbuds wireless earbuds bluetooth"
     },
     {
-      "id": 102,
-      "category": "kitchen-storage",
-      "name": "Kitchen Storage Container Set — to be finalised",
-      "price": 399,
-      "merchant": "Amazon",
-      "rating": null,
-      "reviewCount": null,
-      "image": "",
+      "id": 107,
+      "category": "skincare",
+      "name": "The Derma Co 2% Sali-Cinamide Anti-Acne Face Wash — 80ml",
+      "price": 229,
+      "merchant": "The Derma Co",
+      "rating": 4.8,
+      "reviewCount": 307,
+      "image": "https://thedermaco.com/cdn/shop/files/1_pdp_2_sali_cinamide_new.jpg?v=1767606411&width=1080",
       "affiliateLink": "#",
-      "bestFor": "Small kitchens needing airtight storage",
-      "whyPicked": "Placeholder — replace after research.",
-      "thingsToKnow": "Not yet verified. Do not publish live.",
-      "searchTerms": "kitchen storage container set airtight"
+      "badge": "Most Loved",
+      "bestFor": "Oily and acne-prone skin routines",
+      "whyPicked": "Combines 2% salicylic acid and 2% niacinamide and is positioned by the brand for acne, excess oil and clogged pores.",
+      "thingsToKnow": "Skincare can affect people differently. Patch testing is sensible, and the current 80ml price may change.",
+      "features": [
+        "2% salicylic acid",
+        "2% niacinamide",
+        "Helps remove excess oil",
+        "Targets clogged pores",
+        "80ml size"
+      ],
+      "searchTerms": "The Derma Co sali cinamide face wash salicylic acid niacinamide acne facewash"
     },
     {
-      "id": 103,
-      "category": "water-bottle",
-      "name": "1L Water Bottle — to be finalised",
-      "price": 299,
-      "merchant": "Amazon",
-      "rating": null,
-      "reviewCount": null,
-      "image": "",
+      "id": 108,
+      "category": "skincare",
+      "name": "Minimalist Multi Vitamin SPF 50 PA++++ Hybrid Sunscreen — 50g",
+      "price": 379,
+      "merchant": "Minimalist",
+      "rating": 4.9,
+      "reviewCount": 33,
+      "image": "https://cdn.kindlife.in/images/thumbnails/65/65/detailed/21/8906128100382_1_pp96-qp.jpg?t=1774199983",
       "affiliateLink": "#",
-      "bestFor": "College, office or gym daily carry",
-      "whyPicked": "Placeholder — replace after research.",
-      "thingsToKnow": "Not yet verified. Do not publish live.",
-      "searchTerms": "1 litre water bottle leakproof"
+      "badge": "Everyday Pick",
+      "bestFor": "Daily sunscreen on a budget",
+      "whyPicked": "SPF 50 and PA++++ protection in a 50g format, with a lightweight everyday-sunscreen positioning.",
+      "thingsToKnow": "The displayed price and stock are retailer-dependent and can change. Check the latest listing before buying.",
+      "features": [
+        "SPF 50",
+        "PA++++",
+        "50g tube",
+        "Hybrid sunscreen",
+        "Niacinamide + vitamins"
+      ],
+      "searchTerms": "Minimalist sunscreen SPF 50 PA++++ multivitamin sunscreen 50g"
     },
     {
-      "id": 104,
-      "category": "tops",
-      "name": "Women's Top — to be finalised",
-      "price": 349,
-      "merchant": "Myntra",
-      "rating": null,
-      "reviewCount": null,
-      "image": "",
-      "affiliateLink": "#",
-      "bestFor": "Everyday casual wear under ₹400",
-      "whyPicked": "Placeholder — replace after research.",
-      "thingsToKnow": "Not yet verified. Do not publish live.",
-      "searchTerms": "women tops under 400"
-    },
-    {
-      "id": 105,
-      "category": "sling-bag",
-      "name": "Small Sling / Crossbody Bag — to be finalised",
-      "price": 449,
-      "merchant": "Myntra",
-      "rating": null,
-      "reviewCount": null,
-      "image": "",
-      "affiliateLink": "#",
-      "bestFor": "Light daily carry — phone, cards, keys",
-      "whyPicked": "Placeholder — replace after research.",
-      "thingsToKnow": "Not yet verified. Do not publish live.",
-      "searchTerms": "small sling bag crossbody women"
-    },
-    {
-      "id": 106,
+      "id": 109,
       "category": "study-lamp",
-      "name": "Study / Desk Lamp — to be finalised",
-      "price": 249,
-      "merchant": "Amazon",
+      "name": "WEIRD WOLF TL-008 Study / Desk Lamp",
+      "price": 629,
+      "merchant": "WEIRD WOLF",
       "rating": null,
-      "reviewCount": null,
-      "image": "",
+      "reviewCount": 2,
+      "image": "https://www.weirdwolf.in/cdn/shop/files/TL-008.jpg?v=1767873537&width=%7Bwidth%7D",
       "affiliateLink": "#",
-      "bestFor": "Desk study and work-from-home setups",
-      "whyPicked": "Placeholder — replace after research.",
-      "thingsToKnow": "Not yet verified. Do not publish live.",
-      "searchTerms": "study lamp desk usb rechargeable"
+      "badge": "Desk Pick",
+      "bestFor": "Study desks, reading and work-from-home",
+      "whyPicked": "Three colour modes, touch dimming, flexible neck, mobile/pencil holder and a rechargeable battery make it practical for a study setup.",
+      "thingsToKnow": "The brand's product page currently shows ₹629 and in-stock status; verify availability before publishing.",
+      "features": [
+        "3 colour modes",
+        "Touch on/off + dimming",
+        "Flexible gooseneck",
+        "1200mAh rechargeable battery",
+        "Mobile + pencil holder"
+      ],
+      "searchTerms": "WEIRD WOLF TL-008 study lamp desk lamp rechargeable touch light"
+    },
+    {
+      "id": 110,
+      "category": "ethnic-set",
+      "name": "Trendz Tycoon Embroidered Kurta, Salwar & Dupatta Set",
+      "price": 489,
+      "merchant": "Flipkart",
+      "rating": 4.1,
+      "reviewCount": 36504,
+      "image": "https://rukminim2.flixcart.com/image/480/640/xif0q/salwar-kurta-dupatta/8/u/k/xxl-dno-0025-krazzy-work-purple-sheloom-original-imahjcjzbkhrhhmr.jpeg?q=20",
+      "affiliateLink": "#",
+      "badge": "Festive Pick",
+      "bestFor": "Festive days, family functions and partywear on a budget",
+      "whyPicked": "A complete kurta, salwar and dupatta set with an embroidered pattern at a sub-₹500 reference price.",
+      "thingsToKnow": "Sizes, colours and seller price can vary on Flipkart. Check the exact variant before buying.",
+      "features": [
+        "Kurta + salwar + dupatta",
+        "Embroidered pattern",
+        "Multiple sizes listed",
+        "Purple variant shown",
+        "10-day return shown on listing"
+      ],
+      "searchTerms": "Trendz Tycoon embroidered kurta salwar dupatta set ethnic partywear suit women"
+    },
+    {
+      "id": 111,
+      "category": "water-bottle",
+      "name": "Milton Active Stainless Steel Water Bottle",
+      "price": 364,
+      "merchant": "Milton",
+      "rating": 4.81,
+      "reviewCount": 37,
+      "image": "https://www.milton.in/cdn/shop/files/Active1000_c4133889-40b3-4f4e-b268-57f4b7426a16.jpg?v=1761810019&width=180",
+      "affiliateLink": "#",
+      "badge": "Daily-Use Pick",
+      "bestFor": "College, office, gym and everyday carry",
+      "whyPicked": "A stainless-steel, leak-proof bottle with a spout lid and carrying string, designed for everyday travel and outdoor use.",
+      "thingsToKnow": "The current product page shows an 885ml variant at ₹364; it is not exactly 1 litre. Verify the selected size before buying.",
+      "features": [
+        "Stainless steel",
+        "Leak-proof design",
+        "Spout / flip-top lid",
+        "Carrying string",
+        "885ml variant shown"
+      ],
+      "searchTerms": "Milton Active stainless steel water bottle 1 litre 885ml leak proof office gym"
     }
   ],
   "guides": [
