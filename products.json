@@ -1,7 +1,7 @@
 {
   "meta": {
     "note": "BUILD-STAGE DATA. Prices, availability and affiliate links are placeholders and must be verified with real marketplace research before launch.",
-    "lastUpdated": "2026-09-27"
+    "lastUpdated": "2026-10-03"
   },
   "categories": [
     {
@@ -45,17 +45,26 @@
     {
       "id": 101,
       "category": "earbuds",
-      "name": "Budget TWS Earbuds — Model to be finalised",
-      "price": 299,
-      "merchant": "Flipkart",
-      "rating": null,
-      "reviewCount": null,
+      "name": "GOBOULT Z40 TWS Earbuds",
+      "price": 1099,
+      "merchant": "GOBOULT",
+      "rating": 4.1,
+      "reviewCount": 509822,
       "image": "",
       "affiliateLink": "#",
-      "bestFor": "Everyday calls and music on a tight budget",
-      "whyPicked": "Placeholder — replace after verifying current listing, price and rating count.",
-      "thingsToKnow": "Not yet verified. Do not publish live.",
-      "searchTerms": "tws earbuds budget wireless"
+      "badge": "Popular Pick",
+      "bestFor": "Daily music, calls and casual gaming",
+      "whyPicked": "Long battery backup plus ENC, low-latency mode and Type-C charging make this a useful everyday TWS option around the ₹1,000 range.",
+      "thingsToKnow": "Price and availability can change on the retailer's website. Check the latest price before buying.",
+      "features": [
+        "Up to 60 hours total playtime",
+        "Environmental Noise Cancellation (ENC)",
+        "Low-latency mode",
+        "Type-C charging",
+        "10mm drivers",
+        "IPX5 water resistance"
+      ],
+      "searchTerms": "GOBOULT Z40 TWS earbuds wireless earbuds"
     },
     {
       "id": 102,
